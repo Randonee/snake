@@ -1,0 +1,76 @@
+<html>
+<head>
+<script language="javascript">
+var LEFT = 37, UP = 38, RIGHT = 39, DOWN = 40;
+
+var score = 0;
+var blocks = [];
+var offset = 20;
+var size = 10;
+var startPos = 4 * size + offset;
+var xSpeed = 1;
+var ySpeed = 0;
+
+function incrementScrore() {
+  ++score;
+  document.getElementById("score").value = score;
+}
+
+function addBlock(id) {
+  block = document.createElement('div');
+  block.setAttribute("id", id);
+  block.setAttribute("style", "position:absolute;font-size:1px;width:9px;height:9px;background-color:red;");
+  document.body.appendChild(block);
+  blocks.push(block);
+  return block;
+}
+
+function onKeyDown(e) {
+  switch(e.keyCode) {
+    case LEFT:
+    break;
+    case RIGHT:
+    break;
+    case UP:
+    break;
+    case DOWN:
+    break;
+  }
+}
+document.onkeydown = onKeyDown;
+
+function incrementPos(block, xAmount, yAmount) {
+  blocks[0].style.left = blocks[0].offsetLeft + xAmount * size;
+  blocks[0].style.top = blocks[0].offsetTop + yAmount * size;
+}
+
+function step() {
+  for(var a=1; a < blocks.length; ++a) {
+  }
+}
+
+function start() {
+  var head = addBlock('block0');
+  head.style.top = startPos;
+  head.style.left = startPos;
+
+  var interval = setInterval(step,100);
+}
+
+</script>
+</head>
+  <body bgcolor="#000000" onload="start()">
+    <div style="position:absolute;top:230px;left:390px;">
+      <form>
+        <input id="score" type=text value="0" size=3>
+      </form>
+    </div>
+    
+    <div style="position:absolute;width:400px;height:200px;top:20px;left:20px;border: solid red 1px;" />
+    <div style="position:absolute;width:400px;height:200px;top:270px;left:20px; color:red;">
+      Control with the arrow keys.
+      <br> Eat as many dots as you can.
+      <br>Refresh page to start a new game.
+    </div>
+  </body>
+</html>

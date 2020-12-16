@@ -1,0 +1,59 @@
+<html><body bgcolor="#000000"><div id="s" style="position:absolute;top:230px;left:390px;"><form><input type=text name="s" size=3></form></div><script language="javascript">
+function E(n){
+i=0;
+r="";
+while(n.charAt(i)!="p" && i<9){
+r+=n.charAt(i);
+++i;
+}return Number(r);}
+function U(){
+if(F.left==m.left&&F.top==m.top){
+++o;
+document.forms[0].s.value = o;
+B.push(C[B.length+1]);
+F.left=(Math.round((Math.random())*39)*10)+20;
+F.top=(Math.round((Math.random())*19)*10)+20;
+}
+y=E(m.top);
+x=E(m.left);
+if(x<20||y<20||x>=420||y>=220){clearInterval(G);return;}
+for(i=B.length-1;i>0;--i){
+if(m.top==B[i].top&&m.left==B[i].left)
+clearInterval(G);
+B[i].left=B[i-1].left;
+B[i].top=B[i-1].top;
+}
+m.left=E(m.left)+(v*10);
+m.top=E(m.top)+(w*10);	
+g=0;
+}
+function k(){
+q=event.keyCode-37;
+if(!g){
+if((!(q%2)&&!v)||((q%2)&&!w)){
+g=1;
+v=w=0;
+q<2?(q==0?v=-1:w=-1):(q==2?v=1:w=1);
+}}}
+var C=[];
+for(i=0;i<500;++i){
+m='s'+i;
+document.write('<div id="'+m+'" style="position:absolute;font-size:1px;width:9px;height:9px;top:-200px;left:-200px;background-color:red;"></div>');
+C.push(document.getElementById(m).style);
+}
+var F=C[0];
+F.top=F.left=90;
+var B=[];
+B.push(C[1]);
+B[0].top=B[0].left=50;
+var m=B[0];
+var v=1;
+var w=0;
+var o=0;
+var G=setInterval("U()",100);
+document.onkeydown=k;
+</script><div style="position:absolute;width:400px;height:200px;top:20px;left:20px;border: solid red 1px;"></div>
+<div style="position:absolute;width:400px;height:200px;top:270px;left:20px; color:red;">Control with the arrow keys. <br> Eat as many dots as you can. <br>Refresh page to start a new game.</div>
+
+
+</body></html>
