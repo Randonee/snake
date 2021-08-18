@@ -28,8 +28,12 @@ function addBlock(id) {
 function onKeyDown(e) {
   switch(e.keyCode) {
     case LEFT:
+      xSpeed = -1;
+      ySpeed = 0;
     break;
     case RIGHT:
+      xSpeed = 1;
+      ySpeed = 0;
     break;
     case UP:
     break;
@@ -40,12 +44,14 @@ function onKeyDown(e) {
 document.onkeydown = onKeyDown;
 
 function incrementPos(block, xAmount, yAmount) {
-  blocks[0].style.left = blocks[0].offsetLeft + xAmount * size;
-  blocks[0].style.top = blocks[0].offsetTop + yAmount * size;
+  block.style.left = block.offsetLeft + xAmount * size;
+  block.style.top = block.offsetTop + yAmount * size;
+
 }
 
 function step() {
-  for(var a=1; a < blocks.length; ++a) {
+  for(var a=0; a < blocks.length; ++a) {
+    incrementPos(blocks[a], xSpeed, ySpeed)
   }
 }
 
@@ -65,7 +71,7 @@ function start() {
         <input id="score" type=text value="0" size=3>
       </form>
     </div>
-    
+
     <div style="position:absolute;width:400px;height:200px;top:20px;left:20px;border: solid red 1px;" />
     <div style="position:absolute;width:400px;height:200px;top:270px;left:20px; color:red;">
       Control with the arrow keys.
