@@ -3,9 +3,10 @@
 <script language="javascript">
 var LEFT = 37, UP = 38, RIGHT = 39, DOWN = 40;
 
-var score = 0;
 var blocks = [];
+var food;
 var offset = 20;
+var score = 0;
 var size = 10;
 var startPos = 4 * size + offset;
 var xSpeed = 1;
@@ -23,6 +24,19 @@ function addBlock(id) {
   document.body.appendChild(block);
   blocks.push(block);
   return block;
+}
+
+function moveFood() {
+  if (food) food.remove();
+
+  food = document.createElement('div');
+  food.setAttribute("id", food);
+  food.setAttribute("style", "position:absolute;font-size:1px;width:9px;height:9px;background-color:green;");
+  var xAmount = Math.random() * 40
+  var yAmount = Math.random() * 20
+  food.style.left = offset + food.offsetLeft + xAmount * size;
+  food.style.top = offset + food.offsetTop + yAmount * size;
+  document.body.appendChild(food);
 }
 
 function onKeyDown(e) {
@@ -46,7 +60,6 @@ document.onkeydown = onKeyDown;
 function incrementPos(block, xAmount, yAmount) {
   block.style.left = block.offsetLeft + xAmount * size;
   block.style.top = block.offsetTop + yAmount * size;
-
 }
 
 function step() {
@@ -59,6 +72,7 @@ function start() {
   var head = addBlock('block0');
   head.style.top = startPos;
   head.style.left = startPos;
+  moveFood();
 
   var interval = setInterval(step,100);
 }
