@@ -78,9 +78,9 @@ function isBlockOutOfBounds(block) {
 function step() {
   for(var a=0; a < blocks.length; ++a) {
     incrementPos(blocks[a], xSpeed, ySpeed);
-
-    if(isBlockOutOfBounds(blocks[a])) clearInterval(game_interval);
   }
+
+  if(isBlockOutOfBounds(blocks[0])) clearInterval(game_interval);
 }
 
 function start() {
