@@ -76,11 +76,14 @@ function isBlockOutOfBounds(block) {
 }
 
 function step() {
-  for(var a=0; a < blocks.length; ++a) {
-    incrementPos(blocks[a], xSpeed, ySpeed);
+  for(var a=0; a < blocks.length-2; ++a) {
+    // update the body
   }
 
-  if(isBlockOutOfBounds(blocks[0])) clearInterval(game_interval);
+  var head = blocks[blocks.length-1]
+  incrementPos(head, xSpeed, ySpeed);
+
+  if(isBlockOutOfBounds(head)) clearInterval(game_interval);
 }
 
 function start() {
