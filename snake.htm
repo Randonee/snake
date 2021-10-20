@@ -5,10 +5,10 @@ var LEFT = 37, UP = 38, RIGHT = 39, DOWN = 40;
 
 var blocks = [];
 var food;
-var offset = 20;
+var game_area_offset = 20;
 var score = 0;
-var size = 10;
-var startPos = 4 * size + offset;
+var block_size = 10;
+var startPos = 4 * block_size + game_area_offset;
 var xSpeed = 1;
 var ySpeed = 0;
 
@@ -34,8 +34,8 @@ function moveFood() {
   food.setAttribute("style", "position:absolute;font-size:1px;width:9px;height:9px;background-color:green;");
   var xAmount = Math.random() * 40
   var yAmount = Math.random() * 20
-  food.style.left = offset + food.offsetLeft + xAmount * size;
-  food.style.top = offset + food.offsetTop + yAmount * size;
+  food.style.left = game_area_offset + food.offsetLeft + xAmount * block_size;
+  food.style.top = game_area_offset + food.offsetTop + yAmount * block_size;
   document.body.appendChild(food);
 }
 
@@ -58,8 +58,8 @@ function onKeyDown(e) {
 document.onkeydown = onKeyDown;
 
 function incrementPos(block, xAmount, yAmount) {
-  block.style.left = block.offsetLeft + xAmount * size;
-  block.style.top = block.offsetTop + yAmount * size;
+  block.style.left = block.offsetLeft + xAmount * block_size;
+  block.style.top = block.offsetTop + yAmount * block_size;
 }
 
 function step() {
