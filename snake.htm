@@ -11,6 +11,13 @@ var blockSize = 10;
 var startPos = 4 * blockSize + gameAreaOffset;
 var xSpeed = 1;
 var ySpeed = 0;
+var gameArea = {
+  left: gameAreaOffset,
+  right: gameAreaOffset + 400,
+  top: gameAreaOffset,
+  bottom: gameAreaOffset + 200
+}
+var game_interval;
 
 function incrementScore() {
   ++score;
@@ -62,9 +69,17 @@ function incrementPos(block, xAmount, yAmount) {
   block.style.top = block.offsetTop + yAmount * blockSize;
 }
 
+function isBlockOutOfBounds(block) {
+  if(block.offsetTop < gameArea.top) return true;
+
+  return false;
+}
+
 function step() {
   for(var a=0; a < blocks.length; ++a) {
-    incrementPos(blocks[a], xSpeed, ySpeed)
+    incrementPos(blocks[a], xSpeed, ySpeed);
+
+    if(isBlockOutOfBounds(blocks[a])) clearInterval(game_interval);
   }
 }
 
@@ -74,7 +89,7 @@ function start() {
   head.style.left = startPos;
   moveFood();
 
-  var interval = setInterval(step,100);
+  game_interval = setInterval(step,100);
 }
 
 </script>
